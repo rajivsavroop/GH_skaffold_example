@@ -31,7 +31,11 @@ jobs:
         curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
         chmod +x skaffold
         sudo mv skaffold /usr/local/bin/
-
+    - name: cache for Images
+      uses: actions/cache@v2
+      with:
+        path: ~/.skaffold/cache
+        key: skaffold-cache-${{ runner.os }}-${{ github.sha }}
     - name: Run Skaffold
       run: |
         skaffold run
