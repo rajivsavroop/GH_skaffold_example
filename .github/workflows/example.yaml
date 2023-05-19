@@ -44,12 +44,14 @@ jobs:
       uses: actions/cache@v2
       with:
         path: |
-          skaffold_learning/node_modules
-        key: ${{ runner.os }}-cypress-${{ hashFiles('skaffold_learning/package-lock.json') }}
+          ~/.cache/Cypress
+          node_modules
+        key: my-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+    - run: npm i cypress
     - name: Install dep Cypress
-      if: steps.cypress-cache.outputs.cache-hit != 'true'
-      run:
-        npm ci
+      uses: cypress-io/github-action@v5
+      with:
+        install: false
     - name: Run Cypress test
       run: |
         npm run test
