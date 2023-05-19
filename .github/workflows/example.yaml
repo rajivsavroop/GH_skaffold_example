@@ -37,7 +37,7 @@ jobs:
       with:
         path: |
           ~/.skaffold/cache
-        key: my-cache-${{ runner.os }}-${{ hashFiles('~/.skaffold/cache') }}
+        key: skaffold-${{ hashFiles('~/.skaffold/cache') }}
     - name: Run Skaffold
       run: |
         cat ~/.skaffold/cache || true
