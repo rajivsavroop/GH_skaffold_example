@@ -43,7 +43,9 @@ jobs:
       id: cypress-cache
       uses: actions/cache@v2
       with:
-        path: ~/.cache/Cypress
+        path: |
+          ~/.cache/Cypress
+          skaffold_learning/node_modules
         key: ${{ runner.os }}-cypress-${{ github.sha }}
     - name: Cache modules
       id: cypress-npm
