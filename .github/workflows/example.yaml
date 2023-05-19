@@ -48,7 +48,7 @@ jobs:
           node_modules
         key: my-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
     - name: install cypress
-      if: steps.cypress-cache.outputs.cache-hit != true
+      if: steps.cypress-cache.outputs.cache-hit != 'true'
       run: npm i cypress
     - name: Run Cypress test
       run: |
