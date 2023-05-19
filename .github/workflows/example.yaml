@@ -39,3 +39,14 @@ jobs:
     - name: Run Skaffold
       run: |
         skaffold run
+    - name: Install dep Cypress
+      run:
+        npm ci
+    - name: Cache Cypress dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/Cypress
+        key: ${{ runner.os }}-cypress-${{ github.sha }}
+    - name: Run Cypress test
+      run: |
+        npm run test
