@@ -36,7 +36,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: |
-          ~/.skaffold/cache
+          skaffold/cache
         key: skaffold-${{ hashFiles('skaffold/cache') }}
     - name: Run Skaffold
       run: |
