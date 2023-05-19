@@ -29,8 +29,8 @@ jobs:
     - name: Cache layers
       uses: actions/cache@v3
       with:
-        path: "{{ github.workspace }}/.skaffold/cache"
-        key: skaffold-${{ hashFiles('**/cache') }}
+        path: "~/.skaffold/cache"
+        key: skaffold-${{ hashFiles('~/.skaffold/cache') }}
         restore-keys: |
           skaffold-
 
