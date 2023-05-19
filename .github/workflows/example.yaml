@@ -44,15 +44,8 @@ jobs:
       uses: actions/cache@v2
       with:
         path: |
-          ~/.cache/Cypress
           skaffold_learning/node_modules
-        key: ${{ runner.os }}-cypress-${{ github.sha }}
-    - name: Cache modules
-      id: cypress-npm
-      uses: actions/cache@v2
-      with:
-        path: skaffold_learning/node_modules
-        key: ${{ runner.os }}-cypress-npm-${{ github.sha }}
+        key: ${{ runner.os }}-cypress-${{ hashFiles(skaffold_learning/package-lock.json) }}
     - name: Install dep Cypress
       if: steps.cypress-cache.outputs.cache-hit != 'true'
       run:
