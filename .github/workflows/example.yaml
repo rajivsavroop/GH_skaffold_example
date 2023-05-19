@@ -45,7 +45,7 @@ jobs:
       with:
         path: |
           skaffold_learning/node_modules
-        key: ${{ runner.os }}-cypress-${{ hashFiles(skaffold_learning/package-lock.json) }}
+        key: ${{ runner.os }}-cypress-${{ hashFiles('skaffold_learning/package-lock.json') }}
     - name: Install dep Cypress
       if: steps.cypress-cache.outputs.cache-hit != 'true'
       run:
