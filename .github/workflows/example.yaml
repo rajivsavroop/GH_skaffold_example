@@ -26,14 +26,21 @@ jobs:
       run: |
         minikube start
 
-    - name: Install Skaffold
-      run: |
-        curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
-        chmod +x skaffold
-        sudo mv skaffold /usr/local/bin/
-    - name: Run Skaffold
-      run: |
-        skaffold run
+    - name: Cache layers
+      uses: actions/cache@v3
+      with:
+        path: "{{ github.workspace }}/.skaffold/cache"
+        key: skaffold-${{ hashFiles('**/cache') }}
+        restore-keys: |
+          skaffold-
+
+    - name: Run Skaffold pipeline as action
+      uses: hiberbee/github-action-skaffold@latest
+      with:
+        command: run
+        cache: true
+        verbosity: info
+        working-directory: .
     - name: Cache Cypress dependencies
       id: cypress-cache
       uses: actions/cache@v2
