@@ -37,11 +37,11 @@ jobs:
       with:
         path: |
           ~/.skaffold/cache
-        key: skaffold-${{ hashFiles('~/.skaffold/cache') }}
+        key: skaffold-${{ hashFiles('skaffold/cache') }}
     - name: Run Skaffold
       run: |
-        cat ~/.skaffold/cache || true
-        skaffold run --cache-file='~/.skaffold/cache'
+        skaffold/cache || true
+        skaffold run --cache-file='skaffold/cache'
     - name: Cache Cypress dependencies
       id: cypress-cache
       uses: actions/cache@v2
