@@ -40,9 +40,11 @@ jobs:
       run: |
         skaffold run
     - name: Install dep Cypress
+      if: steps.cypress-cache.outputs.cache-hit != 'true'
       run:
         npm ci
     - name: Cache Cypress dependencies
+      id: cypress-cache
       uses: actions/cache@v2
       with:
         path: ~/.cache/Cypress
