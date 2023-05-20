@@ -40,7 +40,7 @@ jobs:
         key: skaffold-${{ hashFiles('skaffold/cache') }}
     - name: Run Skaffold
       run: |
-        skaffold/cache || true
+        cat skaffold/cache || true
         skaffold run --cache-file='skaffold/cache'
     - name: Cache Cypress dependencies
       id: cypress-cache
