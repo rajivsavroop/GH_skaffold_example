@@ -37,7 +37,10 @@ jobs:
       with:
         path: |
           skaffold/cache
-        key: skaffold-${{ hashFiles('skaffold/cache') }}
+        key: sk-${{ github.sha }}
+        restore-keys: |
+          sk-${{ github.sha }}
+          sk-
     - name: Run Skaffold
       run: |
         cat skaffold/cache || true

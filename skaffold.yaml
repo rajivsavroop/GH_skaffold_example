@@ -3,7 +3,9 @@ kind: Config
 build:
   artifacts:
   - imageName: nginx-skaffold
-    workspace: .
+    context: .
+    docker:
+      dockerfile: Dockerfile
   local: {}
 deploy:
   kubectl:
