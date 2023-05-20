@@ -46,7 +46,7 @@ jobs:
         cat skaffold_cache/cache || true
         skaffold run --cache-file='skaffold_cache/cache'
         echo "Skaffold Cache Created"
-        cat skaffold/cache || true
+        cat skaffold_cache/cache || true
     - name: Cache Cypress dependencies
       id: cypress-cache
       uses: actions/cache@v2
