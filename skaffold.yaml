@@ -5,7 +5,7 @@ build:
   - imageName: nginx-skaffold
     context: .
     docker:
-      dockerfile: Dockerfile
+      dockerfile: ./Dockerfile
   local: {}
 deploy:
   kubectl:
