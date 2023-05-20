@@ -43,7 +43,7 @@ jobs:
           sk-
     - name: Run Skaffold
       run: |
-        skaffold run --cache-file='~/.skaffold/cache'
+        skaffold run
     - name: Cache Cypress dependencies
       id: cypress-cache
       uses: actions/cache@v2
