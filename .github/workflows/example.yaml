@@ -43,7 +43,6 @@ jobs:
           sk-
     - name: Run Skaffold
       run: |
-        cat skaffold/cache || true
         skaffold run --cache-file='~/.skaffold/cache'
     - name: Cache Cypress dependencies
       id: cypress-cache
