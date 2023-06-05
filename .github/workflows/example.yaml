@@ -15,4 +15,8 @@ jobs:
           MY_NAME: "Mona The Octocat"
     steps:
       - name: bash-version
-        run: echo "::add-mask::$MY_NAME"
+        run: |
+          # Mask the github.actor value
+           echo "::add-mask::$MY_NAME"
+          # Use the masked value in your commands or scripts
+            echo "Masked actor: $MY_NAME"
