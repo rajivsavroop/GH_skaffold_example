@@ -17,5 +17,6 @@ jobs:
         run: |
           the_secret=$((RANDOM))
           echo "::add-mask::$the_secret"
-          echo "the secret number is $secret-number"
+          secret-number=$the_secret
+          echo "the secret number is ${secret-number}"
   
