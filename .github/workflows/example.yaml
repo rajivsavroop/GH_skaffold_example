@@ -16,7 +16,6 @@ jobs:
         name: Generate, mask, and output a secret
         run: |
           the_secret=$((RANDOM))
-          echo "::add-mask::$the_secret"
-          secret-number=$the_secret
+          secret-number="::add-mask::$the_secret"
           echo "the secret number is ${secret-number}"
   
