@@ -18,8 +18,7 @@ jobs:
           ref: test-masking
       - name: bash-version
         run: |
-          echo $(pwd)
-          MY_NAME=${{ github.actor }}
+          echo ${{ github.actor }}
           # Mask the github.actor value
            echo "::add-mask::$MY_NAME"
           # Use the masked value in your commands or scripts
