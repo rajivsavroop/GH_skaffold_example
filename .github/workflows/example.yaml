@@ -3,48 +3,24 @@ name: Skaffold Run
 on:
   push:
     branches:
-      - main
+      - .
   pull_request:
     branches:
       - main
 
 jobs:
-  deploy:
+  generate-a-secret-output:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Install Minikube
-      run: |
-        curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-        chmod +x minikube
-        sudo mv minikube /usr/local/bin/
-
-    - name: Start Minikube
-      run: |
-        minikube start
-
-    - name: Install Skaffold
-      run: |
-        curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
-        chmod +x skaffold
-        sudo mv skaffold /usr/local/bin/
-    - name: Run Skaffold
-      run: |
-        skaffold run
-    - name: Cache Cypress dependencies
-      id: cypress-cache
-      uses: actions/cache@v2
-      with:
-        path: |
-          ~/.cache/Cypress
-          node_modules
-        key: my-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-    - name: install cypress
-      if: steps.cypress-cache.outputs.cache-hit != 'true'
-      run: npm ci
-    - name: Run Cypress test
-      run: |
-        npm run test
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          ref: test-masking
+      - name: bash-version
+        run: |
+          my_cred="${{ github.actor }}:${{ secrets.VERY_SECRET }}"
+          # Mask the github.actor value
+           echo "::add-mask::$my_cred"
+          # Use the masked value in your commands or scripts
+            echo "Masked actor: $my_cred"
+            #./test_mask.sh test_mask $MY_NAME
