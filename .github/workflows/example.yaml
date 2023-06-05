@@ -11,8 +11,8 @@ on:
 jobs:
   generate-a-secret-output:
     runs-on: ubuntu-latest
+    env:
+          MY_NAME: "Mona The Octocat"
     steps:
       - name: bash-version
-        env:
-          MY_NAME: "Mona The Octocat"
         run: echo "::add-mask::$MY_NAME"
