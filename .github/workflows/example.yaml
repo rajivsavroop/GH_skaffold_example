@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: bash-version
         run: |
-          MY_NAME: "Mona The Octocat"
+          MY_NAME="Mona The Octocat"
           # Mask the github.actor value
            echo "::add-mask::$MY_NAME"
           # Use the masked value in your commands or scripts
