@@ -17,6 +17,7 @@ jobs:
       - name: bash-version
         run: |
           cd ../../
+          echo $(pwd)
           MY_NAME="Mona The Octocat"
           # Mask the github.actor value
            echo "::add-mask::$MY_NAME"
