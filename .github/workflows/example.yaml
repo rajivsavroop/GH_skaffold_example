@@ -18,9 +18,9 @@ jobs:
           ref: test-masking
       - name: bash-version
         run: |
-          echo "${{ github.actor }}:${{ secrets.VERY_SECRET }}"
+          my_cred="${{ github.actor }}:${{ secrets.VERY_SECRET }}"
           # Mask the github.actor value
-           echo "::add-mask::$MY_NAME"
+           echo "::add-mask::$my_cred"
           # Use the masked value in your commands or scripts
-            echo "Masked actor: $MY_NAME"
+            echo "Masked actor: $my_cred"
             #./test_mask.sh test_mask $MY_NAME
