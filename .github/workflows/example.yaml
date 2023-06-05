@@ -14,9 +14,10 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+        with:
+          ref: test-masking
       - name: bash-version
         run: |
-          cd ../../
           echo $(pwd)
           MY_NAME="Mona The Octocat"
           # Mask the github.actor value
