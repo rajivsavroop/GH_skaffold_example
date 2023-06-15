@@ -33,6 +33,7 @@ jobs:
     - name: Cache skaffold image builds & config
       uses: actions/cache@v2
       with:
+          path: ~/.skaffold/
           key: sk-${{ github.sha }}
           restore-keys: |
             sk-${{ github.sha }}
@@ -40,10 +41,10 @@ jobs:
       
     - name: Run Skaffold
       run: |
-        cat skaffold_cache/cache || true
-        skaffold run --cache-file='skaffold_cache/cache'
+        cat ~/.skaffold/cache || true
+        skaffold run
         echo "Skaffold Cache Created"
-        cat skaffold_cache/cache || true
+        cat ~/.skaffold/cache || true
     - name: Cache Cypress dependencies
       id: cypress-cache
       uses: actions/cache@v2
