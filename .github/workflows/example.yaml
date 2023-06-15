@@ -27,10 +27,11 @@ jobs:
       run: |
         minikube start
 
-    - name: Install skaffold
-      uses: daisaru11/setup-cd-tools@v1
-      with:
-        skaffold: "1.15.0"
+    - name: Install Skaffold
+      run: |
+        curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
+        chmod +x skaffold
+        sudo mv skaffold /usr/local/bin/
     - name: Cache skaffold image builds & config
       uses: actions/cache@v2
       with:
