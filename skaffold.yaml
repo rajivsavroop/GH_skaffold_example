@@ -1,9 +1,11 @@
-apiVersion: skaffold/v1alpha2	
+apiVersion: skaffold/v2alpha2
 kind: Config
 build:
   artifacts:
-  - imageName: nginx-skaffold
-    workspace: .
+  - image: nginx-skaffold
+    context: .
+    docker:
+      dockerfile: Dockerfile
   local: {}
 deploy:
   kubectl:

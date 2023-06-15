@@ -11,7 +11,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
@@ -31,9 +30,21 @@ jobs:
         curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
         chmod +x skaffold
         sudo mv skaffold /usr/local/bin/
+    - name: Cache skaffold image builds & config
+      uses: actions/cache@v2
+      with:
+          path: ~/.skaffold/
+          key: sk-${{ github.sha }}
+          restore-keys: |
+            sk-${{ github.sha }}
+            sk-
+      
     - name: Run Skaffold
       run: |
+        cat ~/.skaffold/cache || true
         skaffold run
+        echo "Skaffold Cache Created"
+        cat ~/.skaffold/cache || true
     - name: Cache Cypress dependencies
       id: cypress-cache
       uses: actions/cache@v2
