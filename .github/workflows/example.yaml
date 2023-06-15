@@ -11,8 +11,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      RUNNER_LOGS: /tmp/runner_logs
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
@@ -60,8 +58,3 @@ jobs:
     - name: Run Cypress test
       run: |
         npm run test
-    - name: Upload runner_log
-      uses: actions/upload-artifact@v3
-      with:
-        name: runner_log
-        path: /tmp/runner_logs
