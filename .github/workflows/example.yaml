@@ -27,21 +27,18 @@ jobs:
       run: |
         minikube start
 
-    - name: Install Skaffold
-      run: |
-        curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
-        chmod +x skaffold
-        sudo mv skaffold /usr/local/bin/
-    
-    - name: Cache Skaffold
+    - name: Install kustomize, kubectl and skaffold
+      uses: daisaru11/setup-cd-tools@v1
+      with:
+        skaffold: "2.5.1"
+    - name: Cache skaffold image builds & config
       uses: actions/cache@v2
       with:
-        path: |
-          skaffold_cache/cache
-        key: sk-${{ github.sha }}
-        restore-keys: |
-          sk-${{ github.sha }}
-          sk-
+          key: sk-${{ github.sha }}
+          restore-keys: |
+            sk-${{ github.sha }}
+            sk-
+      
     - name: Run Skaffold
       run: |
         cat skaffold_cache/cache || true
